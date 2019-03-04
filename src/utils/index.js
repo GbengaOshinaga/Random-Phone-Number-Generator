@@ -8,7 +8,7 @@ export const generateNumbers = length => {
 }
 
 export const hasReachedBottom = element => {
-  return element.getBoundingClientRect().bottom <= window.innerHeight
+  return element ? element.getBoundingClientRect().bottom <= window.innerHeight : false
 }
 
 export const getNumberOfItemsToRender = (length, initialNumberToRender) => {
