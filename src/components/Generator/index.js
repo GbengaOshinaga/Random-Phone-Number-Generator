@@ -18,6 +18,7 @@ class Generator extends React.Component {
     this.state = {
       numberOfGenerations: 0,
       numbers: [],
+      sortOrder: 'ascending',
       showScrollToTop: false
     }
   }
@@ -49,15 +50,16 @@ class Generator extends React.Component {
     const { numbers } = this.state
     const { value } = event.target
 
-    value === "ascending"
-      ? this.setState({ numbers: sortAscending(numbers) })
-      : this.setState({ numbers: sortDescending(numbers) })
+    const sortedNumbers = value === "ascending" ? sortAscending(numbers) : sortDescending(numbers)
+
+    this.setState({ sortOrder: value, numbers: sortedNumbers })
   }
 
   onGenerateButtonClick = () => {
-    const { numberOfGenerations } = this.state
+    const { numberOfGenerations, sortOrder } = this.state
     const numbers = generateNumbers(numberOfGenerations)
-    this.setState({ numbers: sortAscending(numbers) })
+    const sortedNumbers = sortOrder === 'ascending' ? sortAscending(numbers) : sortDescending(numbers)
+    this.setState({ numbers: sortedNumbers })
   }
 
   onDownloadNumbersClick = () => {
@@ -81,12 +83,13 @@ class Generator extends React.Component {
             placeholder="Enter number of phone numbers to generate"
             onChange={this.onTextChange}
           />
-          <Button onClick={this.onGenerateButtonClick}>Generate</Button>
+          <Button id="generate-button" onClick={this.onGenerateButtonClick}>Generate</Button>
         </div>
         {numbers.length 
           ? 
           (
-            <Button 
+            <Button
+             id="download-button"
              className="download-button"
              onClick={this.onDownloadNumbersClick}>
               Download Numbers
@@ -124,22 +127,31 @@ class Generator extends React.Component {
     )
   }
 
+  renderList = () => {
+    const { numbers } = this.state
+    return <List data={numbers} />
+  }
+
+  renderScrollToTopButton = () => {
+    const { showScrollToTop } = this.state
+    return showScrollToTop ? 
+    (
+      <ScrollToTopButton 
+        id="scroll-button"
+        scrollStepInPx="80"
+        delayInMs="3"
+      />
+      ) : null
+  }
+
   render () {
-    const { numbers, showScrollToTop } = this.state
     return (
       <div className="main">
         {this.renderInputSection()}
         {this.renderSortOptions()}
         {this.renderMaxAndMin()}
-        <List data={numbers} />
-        {showScrollToTop ? 
-        (
-          <ScrollToTopButton 
-            id="scroll-button"
-            scrollStepInPx="80"
-            delayInMs="3"
-          />
-          ) : null}
+        {this.renderList()}
+        {this.renderScrollToTopButton()}
       </div>
     )
   }

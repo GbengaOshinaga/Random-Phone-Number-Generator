@@ -12,9 +12,9 @@ export const hasReachedBottom = element => {
 }
 
 export const getNumberOfItemsToRender = (length, initialNumberToRender) => {
-  let numberToRender = initialNumberToRender + 10
+  let numberToRender = initialNumberToRender + 50
   if (length < numberToRender) {
-    numberToRender = length - 10
+    numberToRender = initialNumberToRender + (length - 50)
   }
   return numberToRender
 }
