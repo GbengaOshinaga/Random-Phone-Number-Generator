@@ -1,6 +1,6 @@
 {
   "name": "random-phone-number-generator",
-  "homepage" : "http://gbengaoshinaga.github.io/random-phone-number-generator",
+  "homepage" : "http://gbengaoshinaga.github.io/Random-Phone-Number-Generator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
