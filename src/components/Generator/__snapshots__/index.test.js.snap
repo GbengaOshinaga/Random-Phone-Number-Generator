@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="main"
+>
+  <div
+    className="top-container"
+  >
+    <div
+      className="input-section"
+    >
+      <input
+        autoFocus={true}
+        className="input"
+        onChange={[Function]}
+        placeholder="Enter number of phone numbers to generate"
+        type="number"
+      />
+      <button
+        className="button undefined"
+        id="generate-button"
+        onClick={[Function]}
+        type="button"
+      >
+        Generate
+      </button>
+    </div>
+  </div>
+  <div
+    className="sort"
+  >
+    <select
+      className="select"
+      onChange={[Function]}
+    >
+      <option
+        value="ascending"
+      >
+        Ascending
+      </option>
+      <option
+        value="descending"
+      >
+        Descending
+      </option>
+    </select>
+  </div>
+  <div />
+</div>
+`;
